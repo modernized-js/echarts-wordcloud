@@ -1,6 +1,16 @@
-# echarts-wordcloud
+# @modernized/echarts-wordcloud
+
+[![CI](https://github.com/modernized-js/echarts-wordcloud/actions/workflows/ci.yml/badge.svg)](https://github.com/modernized-js/echarts-wordcloud/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/@modernized/echarts-wordcloud.svg)](https://www.npmjs.com/package/@modernized/echarts-wordcloud)
 
 Third-party Wordcloud extension based on [wordcloud2.js](https://github.com/timdream/wordcloud2.js) for [Apache ECharts](https://github.com/apache/echarts).
+
+A maintained fork of [`echarts-wordcloud`](https://github.com/ecomfe/echarts-wordcloud) by [modernized-js](https://github.com/modernized-js): TypeScript source, generated type declarations, ESM + UMD builds. It is a drop-in replacement — change the package name, that's all:
+
+```diff
+- import 'echarts-wordcloud';
++ import '@modernized/echarts-wordcloud';
+```
 
 ![](./example/word-cloud.png)
 
@@ -13,24 +23,26 @@ Third-party Wordcloud extension based on [wordcloud2.js](https://github.com/timd
 ## Install
 
 ```html
-<script src="echarts.min.js"></script>
-<script src="echarts-wordcloud.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@modernized/echarts-wordcloud/dist/echarts-wordcloud.min.js"></script>
 ```
 
 Or
 
 ```shell
-npm install echarts echarts-wordcloud
+npm install echarts @modernized/echarts-wordcloud
 ```
 
 ```js
 import * as echarts from 'echarts';
-import 'echarts-wordcloud';
+import '@modernized/echarts-wordcloud';
 ```
 
 The package ships an ES module (`import`), a UMD bundle (`require` and `<script>`, at the same `dist/echarts-wordcloud(.min).js` paths as before) and TypeScript declarations. Importing it registers the `wordCloud` series, and `echarts.EChartsOption` accepts `type: 'wordCloud'`.
 
 ⚠️ NOTE:
+
+@modernized/echarts-wordcloud@3 is for echarts@5
 
 echarts-wordcloud@2 is for echarts@5
 
@@ -150,6 +162,7 @@ yarn typecheck
 
 ### Unreleased (3.0.0)
 
+- [chore] Published as `@modernized/echarts-wordcloud`
 - [feature] Publish an ES module next to the UMD bundle, selected through `exports` (`import` → ESM, `require` → UMD)
 - [breaking] Type declarations are generated from the TypeScript sources; the `textStyle.color` callback parameter is typed as `DefaultLabelFormatterCallbackParams` instead of `any`
 - [chore] Source migrated to TypeScript and built with Vite

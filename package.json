@@ -1,7 +1,19 @@
 {
-  "name": "echarts-wordcloud",
+  "name": "@modernized/echarts-wordcloud",
   "version": "2.1.0",
   "description": "ECharts wordcloud extension based on wordcloud2.js",
+  "keywords": [
+    "echarts",
+    "wordcloud",
+    "word-cloud",
+    "wordcloud2",
+    "chart",
+    "visualization"
+  ],
+  "homepage": "https://github.com/modernized-js/echarts-wordcloud#readme",
+  "bugs": {
+    "url": "https://github.com/modernized-js/echarts-wordcloud/issues"
+  },
   "main": "./dist/echarts-wordcloud.js",
   "author": "",
   "license": "ISC",
@@ -18,7 +30,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ecomfe/echarts-wordcloud.git"
+    "url": "https://github.com/modernized-js/echarts-wordcloud.git"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -45,5 +57,9 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "packageManager": "yarn@1.22.22"
 }
