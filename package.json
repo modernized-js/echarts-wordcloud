@@ -8,7 +8,9 @@
   "scripts": {
     "dev": "npx webpack --mode development --watch",
     "build": "npx webpack --mode development",
-    "release": "npx webpack --mode production && npx webpack --mode development"
+    "release": "npx webpack --mode production && npx webpack --mode development",
+    "lint": "eslint . && prettier --check .",
+    "format": "prettier --write . && eslint --fix ."
   },
   "peerDependencies": {
     "echarts": "^5.0.1"
@@ -18,8 +20,12 @@
     "url": "https://github.com/ecomfe/echarts-wordcloud.git"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "echarts": "^5.4.0",
-    "prettier": "^2.5.1",
+    "eslint": "^10.13.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.13.0",
+    "prettier": "^3.9.10",
     "webpack": "^5.11.1",
     "webpack-cli": "^4.3.1"
   }
