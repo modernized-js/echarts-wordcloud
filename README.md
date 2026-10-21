@@ -162,7 +162,7 @@ yarn typecheck
 
 ## Changelog
 
-### Unreleased (4.0.0)
+### 4.0.0
 
 - [breaking] Require echarts 6 (`peerDependencies.echarts: ^6.1.0`); use 3.x with echarts 5
 - [chore] Register the `wordCloud` series type for echarts 6's ESM and CJS declarations; `WordCloudSeriesOption` is also exported from this package

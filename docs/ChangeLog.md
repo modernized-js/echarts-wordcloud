@@ -1,5 +1,12 @@
 # ChangeLog
 
+## @modernized/echarts-wordcloud@4.0.0 — 2026-10-21
+
+- #22 **Breaking**: require Apache ECharts 6 (`peerDependencies.echarts: ^6.1.0`); stay on 3.x for ECharts 5. Register the `wordCloud` series type for ECharts 6's separate ESM (`types/dist/shared`) and CJS declarations, export `WordCloudSeriesOption` from the package, README version note and CDN example. Known limitation: CommonJS TypeScript projects with `moduleResolution: node16` cannot get the series type (ECharts 6's `.d.cts` is an `export =` namespace). Runtime behaviour matches ECharts 5 apart from ECharts 6's default palette.
+- #20 Add `docs/ChangeLog.md` with the 3.0.0 entry.
+
+npm: [`@modernized/echarts-wordcloud@4.0.0`](https://www.npmjs.com/package/@modernized/echarts-wordcloud/v/4.0.0)
+
 ## @modernized/echarts-wordcloud@3.0.0 — 2026-10-21
 
 First release of the maintained fork of [`echarts-wordcloud`](https://github.com/ecomfe/echarts-wordcloud) (upstream 2.1.0) under the `@modernized` scope. Drop-in replacement: change the package name from `echarts-wordcloud` to `@modernized/echarts-wordcloud`.
