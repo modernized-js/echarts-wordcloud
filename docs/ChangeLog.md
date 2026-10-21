@@ -1,5 +1,12 @@
 # ChangeLog
 
+## @modernized/echarts-wordcloud@4.0.1 — 2026-10-21
+
+- #25 Fix #24: `dispose()` now stops a running layout. The `wordcloudstart` and `wordclouddrawn` events the layout loop checks for cancellation were created without `cancelable: true`, so `preventDefault()` had no effect and the loop kept placing words on a detached canvas; a resize mid-layout also let the old layout run to the end. Event dispatch moved into `src/events.ts` with `node:test` coverage, and CI runs `yarn test`.
+- #23 Record 4.0.0 in the changelog.
+
+npm: [`@modernized/echarts-wordcloud@4.0.1`](https://www.npmjs.com/package/@modernized/echarts-wordcloud/v/4.0.1)
+
 ## @modernized/echarts-wordcloud@4.0.0 — 2026-10-21
 
 - #22 **Breaking**: require Apache ECharts 6 (`peerDependencies.echarts: ^6.1.0`); stay on 3.x for ECharts 5. Register the `wordCloud` series type for ECharts 6's separate ESM (`types/dist/shared`) and CJS declarations, export `WordCloudSeriesOption` from the package, README version note and CDN example. Known limitation: CommonJS TypeScript projects with `moduleResolution: node16` cannot get the series type (ECharts 6's `.d.cts` is an `export =` namespace). Runtime behaviour matches ECharts 5 apart from ECharts 6's default palette.
