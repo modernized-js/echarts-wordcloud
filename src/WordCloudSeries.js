@@ -16,7 +16,7 @@ echarts.extendSeriesModel({
     option.gridSize = Math.max(Math.floor(option.gridSize), 4);
   },
 
-  getInitialData: function (option, ecModel) {
+  getInitialData: function (option) {
     var dimensions = echarts.helper.createDimensions(option.data, {
       coordDimensions: ['value']
     });

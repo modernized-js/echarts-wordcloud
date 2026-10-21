@@ -3,7 +3,7 @@ import * as echarts from 'echarts/lib/echarts';
 echarts.extendChartView({
   type: 'wordCloud',
 
-  render: function (seriesModel, ecModel, api) {
+  render: function (seriesModel) {
     var group = this.group;
     group.removeAll();
 
