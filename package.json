@@ -2,16 +2,17 @@
   "name": "echarts-wordcloud",
   "version": "2.1.0",
   "description": "ECharts wordcloud extension based on wordcloud2.js",
-  "main": "index.js",
+  "type": "module",
+  "main": "./dist/echarts-wordcloud.js",
   "author": "",
   "license": "ISC",
   "scripts": {
-    "dev": "vite build --mode development --watch",
-    "build": "tsc -p . && vite build --mode development",
-    "release": "tsc -p . && vite build --mode production && vite build --mode development",
+    "dev": "vite",
+    "build": "tsc -p . && vite build && tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p .",
     "lint": "eslint . && prettier --check .",
     "format": "prettier --write . && eslint --fix .",
-    "typecheck": "tsc -p ."
+    "prepublishOnly": "yarn build"
   },
   "peerDependencies": {
     "echarts": "^5.0.1"
@@ -30,5 +31,17 @@
     "typescript": "6.0.3",
     "typescript-eslint": "^8.72.0",
     "vite": "^8.3.4"
-  }
+  },
+  "module": "./dist/echarts-wordcloud.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/echarts-wordcloud.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ]
 }
