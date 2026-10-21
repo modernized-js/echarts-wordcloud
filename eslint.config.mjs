@@ -1,23 +1,28 @@
 import js from '@eslint/js';
 import prettierConfig from 'eslint-config-prettier';
 import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
-export default [
-  { ignores: ['dist/', 'example/', 'node_modules/'] },
+export default tseslint.config(
+  { ignores: ['dist/', 'example/', 'node_modules/', 'index.d.ts'] },
   js.configs.recommended,
   {
-    files: ['index.js', 'src/**/*.js'],
+    files: ['**/*.ts'],
+    extends: [tseslint.configs.recommendedTypeChecked],
     languageOptions: {
-      sourceType: 'module',
-      globals: globals.browser
+      globals: globals.browser,
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname
+      }
     }
   },
   {
-    files: ['vite.config.mjs'],
+    files: ['vite.config.mjs', 'eslint.config.mjs'],
     languageOptions: {
       sourceType: 'module',
       globals: globals.node
     }
   },
   prettierConfig
-];
+);

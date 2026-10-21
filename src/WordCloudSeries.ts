@@ -1,26 +1,35 @@
 import * as echarts from 'echarts/lib/echarts';
+import type { Model } from 'echarts/lib/echarts';
+import type {
+  WordCloudSeriesModel,
+  WordCloudSeriesModelOption,
+  WordCloudTextStyleOption
+} from './types';
 
 echarts.extendSeriesModel({
   type: 'series.wordCloud',
 
   visualStyleAccessPath: 'textStyle',
-  visualStyleMapper: function (model) {
+  visualStyleMapper: function (model: Model<WordCloudTextStyleOption>) {
     return {
       fill: model.get('color')
     };
   },
   visualDrawType: 'fill',
 
-  optionUpdated: function () {
-    var option = this.option;
+  optionUpdated: function (this: WordCloudSeriesModel) {
+    const option = this.option;
     option.gridSize = Math.max(Math.floor(option.gridSize), 4);
   },
 
-  getInitialData: function (option) {
-    var dimensions = echarts.helper.createDimensions(option.data, {
+  getInitialData: function (
+    this: WordCloudSeriesModel,
+    option: WordCloudSeriesModelOption
+  ) {
+    const dimensions = echarts.helper.createDimensions(option.data, {
       coordDimensions: ['value']
     });
-    var list = new echarts.List(dimensions, this);
+    const list = new echarts.List(dimensions, this);
     list.initData(option.data);
     return list;
   },

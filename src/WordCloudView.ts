@@ -1,21 +1,39 @@
 import * as echarts from 'echarts/lib/echarts';
+import type { ChartView } from 'echarts/lib/echarts';
+import { getLayoutInstance } from './layoutInstances';
+import type { WordCloudDataItemOption, WordCloudSeriesModel } from './types';
+
+const renderedSeriesModels = new WeakMap<ChartView, WordCloudSeriesModel>();
+
+const getRenderedSeriesModel = (view: ChartView): WordCloudSeriesModel => {
+  const seriesModel = renderedSeriesModels.get(view);
+  if (!seriesModel) {
+    throw new Error('wordCloud view has not been rendered.');
+  }
+  return seriesModel;
+};
 
 echarts.extendChartView({
   type: 'wordCloud',
 
-  render: function (seriesModel) {
-    var group = this.group;
+  render: function (this: ChartView, seriesModel: WordCloudSeriesModel) {
+    const group = this.group;
     group.removeAll();
 
-    var data = seriesModel.getData();
+    const data = seriesModel.getData();
 
-    var gridSize = seriesModel.get('gridSize');
+    const gridSize = seriesModel.get('gridSize');
 
-    seriesModel.layoutInstance.ondraw = function (text, size, dataIdx, drawn) {
-      var itemModel = data.getItemModel(dataIdx);
-      var textStyleModel = itemModel.getModel('textStyle');
+    getLayoutInstance(seriesModel).ondraw = function (
+      text,
+      size,
+      dataIdx,
+      drawn
+    ) {
+      const itemModel = data.getItemModel<WordCloudDataItemOption>(dataIdx);
+      const textStyleModel = itemModel.getModel('textStyle');
 
-      var textEl = new echarts.graphic.Text({
+      const textEl = new echarts.graphic.Text({
         style: echarts.helper.createTextStyle(textStyleModel),
         scaleX: 1 / drawn.info.mu,
         scaleY: 1 / drawn.info.mu,
@@ -23,7 +41,9 @@ echarts.extendChartView({
         y: (drawn.gy + drawn.info.gh / 2) * gridSize,
         rotation: drawn.rot
       });
-      textEl.setStyle({
+      // Same as `setStyle(obj)`; zrender types text `fill` as string only,
+      // but the visual can be a gradient, which zrender renders.
+      Object.assign(textEl.style, {
         x: drawn.info.fillTextOffsetX,
         y: drawn.info.fillTextOffsetY + size * 0.5,
         text: text,
@@ -31,6 +51,7 @@ echarts.extendChartView({
         fill: data.getItemVisual(dataIdx, 'style').fill,
         fontSize: size
       });
+      textEl.dirtyStyle();
 
       group.add(textEl);
 
@@ -61,20 +82,18 @@ echarts.extendChartView({
           : 0,
         easing: seriesModel.get(['stateAnimation', 'easing'])
       };
-      // TODO
-      textEl.__highDownDispatcher = true;
     };
 
-    this._model = seriesModel;
+    renderedSeriesModels.set(this, seriesModel);
   },
 
-  remove: function () {
+  remove: function (this: ChartView) {
     this.group.removeAll();
 
-    this._model.layoutInstance.dispose();
+    getLayoutInstance(getRenderedSeriesModel(this)).dispose();
   },
 
-  dispose: function () {
-    this._model.layoutInstance.dispose();
+  dispose: function (this: ChartView) {
+    getLayoutInstance(getRenderedSeriesModel(this)).dispose();
   }
 });
