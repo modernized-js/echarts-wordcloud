@@ -23,7 +23,7 @@ A maintained fork of [`echarts-wordcloud`](https://github.com/ecomfe/echarts-wor
 ## Install
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@6/dist/echarts.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@modernized/echarts-wordcloud/dist/echarts-wordcloud.min.js"></script>
 ```
 
@@ -41,6 +41,8 @@ import '@modernized/echarts-wordcloud';
 The package ships an ES module (`import`), a UMD bundle (`require` and `<script>`, at the same `dist/echarts-wordcloud(.min).js` paths as before) and TypeScript declarations. Importing it registers the `wordCloud` series, and `echarts.EChartsOption` accepts `type: 'wordCloud'`.
 
 ⚠️ NOTE:
+
+@modernized/echarts-wordcloud@4 is for echarts@6
 
 @modernized/echarts-wordcloud@3 is for echarts@5
 
@@ -159,6 +161,11 @@ yarn typecheck
 ```
 
 ## Changelog
+
+### Unreleased (4.0.0)
+
+- [breaking] Require echarts 6 (`peerDependencies.echarts: ^6.1.0`); use 3.x with echarts 5
+- [chore] Register the `wordCloud` series type for echarts 6's ESM and CJS declarations; `WordCloudSeriesOption` is also exported from this package
 
 ### 3.0.0
 
