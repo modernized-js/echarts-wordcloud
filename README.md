@@ -160,7 +160,7 @@ yarn typecheck
 
 ## Changelog
 
-### Unreleased (3.0.0)
+### 3.0.0
 
 - [chore] Published as `@modernized/echarts-wordcloud`
 - [feature] Publish an ES module next to the UMD bundle, selected through `exports` (`import` → ESM, `require` → UMD)
