@@ -1,6 +1,7 @@
 # Set up ESLint and Prettier (#3)
 
 ## Tooling
+
 - ESLint 10 flat config (`eslint.config.mjs`) with `@eslint/js` recommended + `eslint-config-prettier`.
 - Prettier 3; keep the existing `.prettierrc`. Prettier runs as its own check, not through an ESLint plugin.
 - Remove `.eslintrc.js` / `.eslintrc.yaml` (eslint was never installed; the `.yaml` held JS).
@@ -8,6 +9,7 @@
 - Lint scope: `index.js`, `src/`, `webpack.config.js`. `dist/` and `example/` are ignored.
 
 ## Commits
+
 1. Tooling only.
 2. `prettier --write` reformat — verified by comparing ASTs before/after (formatting must not change the AST).
 3. Fixes for the existing ESLint findings, each spec-equivalent:

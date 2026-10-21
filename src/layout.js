@@ -701,7 +701,6 @@ var WordCloud = function WordCloud(elements, options) {
       gy = cgh;
       while (gy--) {
         y = g;
-        /* eslint no-labels: ['error', { 'allowLoop': true }] */
         singleGridLoop: while (y--) {
           x = g;
           while (x--) {
@@ -875,8 +874,7 @@ var WordCloud = function WordCloud(elements, options) {
       } else {
         // drawText on DIV element
         var span = document.createElement('span');
-        var transformRule = '';
-        transformRule = 'rotate(' + (-rotateDeg / Math.PI) * 180 + 'deg) ';
+        var transformRule = 'rotate(' + (-rotateDeg / Math.PI) * 180 + 'deg) ';
         if (info.mu !== 1) {
           transformRule +=
             'translateX(-' +
@@ -1184,16 +1182,16 @@ var WordCloud = function WordCloud(elements, options) {
     } else {
       /* Determine bgPixel by creating
            another canvas and fill the specified background color. */
-      var bctx = document.createElement('canvas').getContext('2d');
+      const bctx = document.createElement('canvas').getContext('2d');
 
       bctx.fillStyle = settings.backgroundColor;
       bctx.fillRect(0, 0, 1, 1);
-      var bgPixel = bctx.getImageData(0, 0, 1, 1).data;
+      const bgPixel = bctx.getImageData(0, 0, 1, 1).data;
 
       /* Read back the pixels of the canvas we got to tell which part of the
            canvas is empty.
            (no clearCanvas only works with a canvas, not divs) */
-      var imageData = canvas
+      const imageData = canvas
         .getContext('2d')
         .getImageData(0, 0, ngx * g, ngy * g).data;
 
@@ -1204,7 +1202,6 @@ var WordCloud = function WordCloud(elements, options) {
         gy = ngy;
         while (gy--) {
           y = g;
-          /* eslint no-labels: ['error', { 'allowLoop': true }] */
           singleGridLoop: while (y--) {
             x = g;
             while (x--) {
@@ -1225,8 +1222,6 @@ var WordCloud = function WordCloud(elements, options) {
           }
         }
       }
-
-      imageData = bctx = bgPixel = undefined;
     }
 
     // fill the infoGrid with empty state if we need it

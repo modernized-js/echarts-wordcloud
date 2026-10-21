@@ -28,10 +28,9 @@ function updateCanvasMask(maskCanvas) {
   }
   var threshold = toneSum / toneCnt;
 
-  for (var i = 0; i < imageData.data.length; i += 4) {
-    var tone =
-      imageData.data[i] + imageData.data[i + 1] + imageData.data[i + 2];
-    var alpha = imageData.data[i + 3];
+  for (i = 0; i < imageData.data.length; i += 4) {
+    tone = imageData.data[i] + imageData.data[i + 1] + imageData.data[i + 2];
+    alpha = imageData.data[i + 3];
 
     if (alpha < 128 || tone > threshold) {
       // Area not to draw
@@ -191,7 +190,7 @@ echarts.registerPreprocessor(function (option) {
   function compatTextStyle(textStyle) {
     textStyle &&
       echarts.util.each(compats, function (key) {
-        if (textStyle.hasOwnProperty(key)) {
+        if (Object.prototype.hasOwnProperty.call(textStyle, key)) {
           textStyle['text' + echarts.format.capitalFirst(key)] = textStyle[key];
         }
       });
