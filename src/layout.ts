@@ -6,6 +6,8 @@
  * Released under the MIT license
  */
 
+import { dispatchToAll } from './events';
+
 type ImmediateFunction = (callback: () => void) => number | undefined;
 type ClearImmediateFunction = (id: number | undefined) => void;
 
@@ -1301,22 +1303,8 @@ function WordCloud(
     type: string,
     cancelable: boolean,
     details?: WordCloudDrawnDetail
-  ): boolean | undefined {
-    if (cancelable) {
-      return !elements.some(function (el) {
-        const event = new CustomEvent(type, {
-          detail: details || {}
-        });
-        return !el.dispatchEvent(event);
-      });
-    } else {
-      elements.forEach(function (el) {
-        const event = new CustomEvent(type, {
-          detail: details || {}
-        });
-        el.dispatchEvent(event);
-      });
-    }
+  ): boolean {
+    return dispatchToAll(elements, type, cancelable, details || {});
   };
 
   /* Start drawing on a canvas */

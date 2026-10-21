@@ -21,6 +21,7 @@
     "dev": "vite",
     "build": "tsc -p . && vite build --mode esm && vite build --mode umd && vite build --mode umd-min && tsc -p tsconfig.build.json",
     "typecheck": "tsc -p .",
+    "test": "node --test test/test_*.mjs",
     "lint": "eslint . && prettier --check .",
     "format": "prettier --write . && eslint --fix .",
     "prepublishOnly": "yarn build"
