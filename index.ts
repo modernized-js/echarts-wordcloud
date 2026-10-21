@@ -1,3 +1,7 @@
 import './src/wordCloud';
 
-export type { WordCloudDataItem, WordCloudTextStyle } from './src/option';
+export type {
+  WordCloudDataItem,
+  WordCloudSeriesOption,
+  WordCloudTextStyle
+} from './src/option';

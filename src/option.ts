@@ -48,51 +48,62 @@ export interface WordCloudDataItem {
   };
 }
 
-declare module 'echarts/types/dist/echarts' {
-  export interface WordCloudSeriesOption {
-    mainType?: 'series';
-    type?: 'wordCloud';
-    silent?: boolean;
-    blendMode?: string;
-    /**
-     * Cursor when mouse on the elements
-     */
-    cursor?: string;
+export interface WordCloudSeriesOption {
+  mainType?: 'series';
+  type?: 'wordCloud';
+  silent?: boolean;
+  blendMode?: string;
+  /**
+   * Cursor when mouse on the elements
+   */
+  cursor?: string;
 
-    width?: number | string;
-    height?: number | string;
-    top?: number | string;
-    right?: number | string;
-    bottom?: number | string;
-    left?: number | string;
+  width?: number | string;
+  height?: number | string;
+  top?: number | string;
+  right?: number | string;
+  bottom?: number | string;
+  left?: number | string;
 
-    textStyle?:
-      | WordCloudTextStyle
-      | {
-          color?: (params: DefaultLabelFormatterCallbackParams) => string;
-        };
-    emphasis?: {
-      focus?: 'self' | 'series' | 'none';
-      blurScope?: 'coordinateSystem' | 'global' | 'series';
-      textStyle?: WordCloudTextStyle;
-    };
+  textStyle?:
+    | WordCloudTextStyle
+    | {
+        color?: (params: DefaultLabelFormatterCallbackParams) => string;
+      };
+  emphasis?: {
+    focus?: 'self' | 'series' | 'none';
+    blurScope?: 'coordinateSystem' | 'global' | 'series';
+    textStyle?: WordCloudTextStyle;
+  };
 
-    shape?: string;
-    maskImage?: HTMLImageElement | HTMLCanvasElement;
+  shape?: string;
+  maskImage?: HTMLImageElement | HTMLCanvasElement;
 
-    sizeRange?: number[];
-    rotationRange?: number[];
-    rotationStep?: number;
+  sizeRange?: number[];
+  rotationRange?: number[];
+  rotationStep?: number;
 
-    gridSize?: number;
+  gridSize?: number;
 
-    drawOutOfBound?: boolean;
-    layoutAnimation?: boolean;
+  drawOutOfBound?: boolean;
+  layoutAnimation?: boolean;
 
-    data?: WordCloudDataItem[];
+  data?: WordCloudDataItem[];
+}
+
+// echarts 6 declares this separately for ESM (`shared`) and CJS types.
+declare module 'echarts' {
+  export type WordCloudSeriesOption = WordCloudSeriesOptionAlias;
+
+  interface RegisteredSeriesOption {
+    wordCloud: WordCloudSeriesOptionAlias;
   }
+}
 
+declare module 'echarts/types/dist/shared' {
   interface RegisteredSeriesOption {
     wordCloud: WordCloudSeriesOption;
   }
 }
+
+type WordCloudSeriesOptionAlias = WordCloudSeriesOption;
