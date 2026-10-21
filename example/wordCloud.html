@@ -1,9 +1,6 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <script src='https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js'></script>
-        <!-- <script src="../../echarts/dist/echarts.js"></script> -->
-        <script src='../dist/echarts-wordcloud.js'></script>
     </head>
     <body>
         <style>
@@ -14,7 +11,10 @@
             }
         </style>
         <div id='main'></div>
-        <script>
+        <script type="module">
+            import * as echarts from 'echarts';
+            import '../index.ts';
+
             var chart = echarts.init(document.getElementById('main'));
 
             var option = {

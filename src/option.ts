@@ -1,6 +1,6 @@
-import echarts from 'echarts';
+import type { DefaultLabelFormatterCallbackParams } from 'echarts';
 
-interface WordCloudTextStyle {
+export interface WordCloudTextStyle {
   color?: string;
   fontStyle?: string;
   fontWeight?: string | number;
@@ -39,7 +39,7 @@ interface WordCloudTextStyle {
   textShadowOffsetY?: number;
 }
 
-interface WorldCloudDataItem {
+export interface WordCloudDataItem {
   name?: string;
   value?: number | number[];
   textStyle?: WordCloudTextStyle;
@@ -69,7 +69,7 @@ declare module 'echarts/types/dist/echarts' {
     textStyle?:
       | WordCloudTextStyle
       | {
-          color?: (params?: any) => string;
+          color?: (params: DefaultLabelFormatterCallbackParams) => string;
         };
     emphasis?: {
       focus?: 'self' | 'series' | 'none';
@@ -89,7 +89,7 @@ declare module 'echarts/types/dist/echarts' {
     drawOutOfBound?: boolean;
     layoutAnimation?: boolean;
 
-    data?: WorldCloudDataItem[];
+    data?: WordCloudDataItem[];
   }
 
   interface RegisteredSeriesOption {

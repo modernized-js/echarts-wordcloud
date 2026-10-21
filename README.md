@@ -12,16 +12,8 @@ Third-party Wordcloud extension based on [wordcloud2.js](https://github.com/timd
 
 ## Install
 
-```html
-<script src="echarts.min.js"></script>
-<script src="echarts-wordcloud.min.js"></script>
-```
-
-Or
-
 ```shell
-npm install echarts
-npm install echarts-wordcloud
+npm install echarts echarts-wordcloud
 ```
 
 ```js
@@ -29,7 +21,11 @@ import * as echarts from 'echarts';
 import 'echarts-wordcloud';
 ```
 
+The package is published as an ES module with TypeScript declarations. Importing it registers the `wordCloud` series, and `echarts.EChartsOption` accepts `type: 'wordCloud'`.
+
 ⚠️ NOTE:
+
+echarts-wordcloud@3 is ESM only. The UMD bundle for `<script>` tags is no longer published; use echarts-wordcloud@2 for that.
 
 echarts-wordcloud@2 is for echarts@5
 
@@ -136,7 +132,22 @@ chart.setOption({
 });
 ```
 
+## Development
+
+```shell
+yarn dev        # Vite dev server; open http://localhost:5173/example/wordCloud.html
+yarn build      # type-check, ESM bundle and declarations into dist/
+yarn lint
+yarn typecheck
+```
+
 ## Changelog
+
+### Unreleased (3.0.0)
+
+- [breaking] Publish ES module only; the UMD bundle (`echarts-wordcloud(.min).js` for `<script>`) is no longer published
+- [breaking] Type declarations are generated from the TypeScript sources; the `textStyle.color` callback parameter is typed as `DefaultLabelFormatterCallbackParams` instead of `any`
+- [chore] Source migrated to TypeScript and built with Vite
 
 ### 2.1.0
 
