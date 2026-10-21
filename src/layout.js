@@ -170,7 +170,7 @@ var getItemExtraData = function (item) {
 
 // Based on http://jsfromhell.com/array/shuffle
 var shuffleArray = function shuffleArray(arr) {
-  for (var j, x, i = arr.length; i; ) {
+  for (var j, x, i = arr.length; i;) {
     j = Math.floor(Math.random() * i);
     x = arr[--i];
     arr[i] = arr[j];
@@ -453,7 +453,7 @@ var WordCloud = function WordCloud(elements, options) {
     var y = Math.floor((eventY * (canvas.height / rect.height || 1)) / g);
 
     if (!infoGrid[x]) {
-      return null
+      return null;
     }
 
     return infoGrid[x][y];
@@ -546,7 +546,10 @@ var WordCloud = function WordCloud(elements, options) {
       return minRotation;
     }
 
-    return minRotation + Math.round(Math.random() * rotationRange / rotationStep) * rotationStep;
+    return (
+      minRotation +
+      Math.round((Math.random() * rotationRange) / rotationStep) * rotationStep
+    );
   };
 
   var getTextInfo = function getTextInfo(
