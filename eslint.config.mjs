@@ -13,9 +13,9 @@ export default [
     }
   },
   {
-    files: ['webpack.config.js'],
+    files: ['vite.config.mjs'],
     languageOptions: {
-      sourceType: 'commonjs',
+      sourceType: 'module',
       globals: globals.node
     }
   },
