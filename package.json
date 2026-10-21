@@ -7,10 +7,11 @@
   "license": "ISC",
   "scripts": {
     "dev": "vite build --mode development --watch",
-    "build": "vite build --mode development",
-    "release": "vite build --mode production && vite build --mode development",
+    "build": "tsc -p . && vite build --mode development",
+    "release": "tsc -p . && vite build --mode production && vite build --mode development",
     "lint": "eslint . && prettier --check .",
-    "format": "prettier --write . && eslint --fix ."
+    "format": "prettier --write . && eslint --fix .",
+    "typecheck": "tsc -p ."
   },
   "peerDependencies": {
     "echarts": "^5.0.1"
@@ -26,6 +27,8 @@
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.13.0",
     "prettier": "^3.9.10",
+    "typescript": "6.0.3",
+    "typescript-eslint": "^8.72.0",
     "vite": "^8.3.4"
   }
 }

@@ -6,7 +6,7 @@ export default defineConfig(({ mode }) => {
     publicDir: false,
     build: {
       lib: {
-        entry: 'index.js',
+        entry: 'index.ts',
         formats: ['umd'],
         name: 'echarts-wordcloud',
         fileName: () =>
