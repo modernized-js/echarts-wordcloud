@@ -6,9 +6,9 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "dev": "npx webpack --mode development --watch",
-    "build": "npx webpack --mode development",
-    "release": "npx webpack --mode production && npx webpack --mode development",
+    "dev": "vite build --mode development --watch",
+    "build": "vite build --mode development",
+    "release": "vite build --mode production && vite build --mode development",
     "lint": "eslint . && prettier --check .",
     "format": "prettier --write . && eslint --fix ."
   },
@@ -26,7 +26,6 @@
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.13.0",
     "prettier": "^3.9.10",
-    "webpack": "^5.11.1",
-    "webpack-cli": "^4.3.1"
+    "vite": "^8.3.4"
   }
 }
